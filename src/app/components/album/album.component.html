@@ -1,1 +1,6 @@
 <p>album works!</p>
+
+<div *ngFor="let album of albums | slice:page: perPage">
+  {{ album.title }} ||
+  {{ album.thumbnailUrl }}
+</div>
