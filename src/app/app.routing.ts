@@ -14,7 +14,7 @@ const AppRoutes: Routes = [
     children: [
       { path: 'home', component: HomeComponent },
       { path: 'album', component: AlbumComponent },
-      { path: 'album-detail', component: AlbumDetailComponent },
+      { path: 'album-detail/:id', component: AlbumDetailComponent },
     ],
   },
   { path: '**', component: NotFoundComponent },

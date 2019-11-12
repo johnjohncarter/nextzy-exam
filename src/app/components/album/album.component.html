@@ -1,6 +1,21 @@
-<p>album works!</p>
-
-<div *ngFor="let album of albums | slice:page: perPage">
-  {{ album.title }} ||
-  {{ album.thumbnailUrl }}
+<div>
+  <h2>Angular Album</h2>
+</div>
+<div style="padding: 18px; background-color: #ffffff">
+  <div class="row">
+    <div *ngFor="let album of albums | slice:page: perPage" class="col-lg-3 col-md-4 col-sm-6">
+      <div class="gallery">
+        <a target="_blank" href="{{ album.url }}">
+          <img src="{{ album.url }}" alt="image-{{ album.id }}" style="height: 80%">
+        </a>
+        <div class="title">Album {{ album.id }}</div>
+        <div class="desc">{{ album.title }}</div>
+        <div class="desc">
+          <button (click)="onMoreDetail(album.albumId)"
+                  class="btn btn-primary rounded-0">More Detail
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

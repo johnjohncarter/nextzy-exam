@@ -9,8 +9,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./album.component.css']
 })
 export class AlbumComponent implements OnInit {
-
-  photosAlbum: any;
   albums: any;
 
   page: number;
@@ -31,7 +29,6 @@ export class AlbumComponent implements OnInit {
 
   ngOnInit() {
     this.getAlbum();
-    this.getAlbumDetail();
   }
 
   getAlbum() {
@@ -45,15 +42,8 @@ export class AlbumComponent implements OnInit {
     );
   }
 
-  getAlbumDetail() {
-    this.album.getAlbumDetail(1).subscribe(
-      response => {
-        this.photosAlbum = response;
-      },
-      error => {
-          console.log(error);
-      }
-    );
+  onMoreDetail(id) {
+    this.router.navigate(['/album-detail', id]);
   }
 
 }
