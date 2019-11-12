@@ -21,3 +21,8 @@ div.title {
 div.desc {
   padding: 10px;
 }
+
+div.paginate {
+  padding: 30px 0;
+}
+

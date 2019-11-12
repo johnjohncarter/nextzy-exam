@@ -36,3 +36,7 @@ div.photo-id {
 div.desc {
   padding: 10px;
 }
+
+div.paginate {
+  padding: 30px 0;
+}
