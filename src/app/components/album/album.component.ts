@@ -15,9 +15,6 @@ export class AlbumComponent implements OnInit {
   perPage: number;
   currentPage: number;
 
-  p: number;
-  collection: any;
-
   constructor(
     private router: Router,
     private album: PhotosService,
