@@ -6,11 +6,11 @@
     <div *ngIf="!albums">
       <h3>Not found album !!</h3>
     </div>
-    <div *ngFor="let album of albums | slice:page: perPage"
+    <div *ngFor="let album of albums | paginate: { itemsPerPage: perPage, currentPage: page }"
          class="col-lg-3 col-md-4 col-sm-6">
       <div class="gallery">
         <a target="_blank" href="{{ album.url }}">
-          <img src="{{ album.url }}" alt="image-{{ album.id }}" style="height: 80%">
+          <img src="{{ album.url }}" alt="image-{{ album.id }}">
         </a>
         <div class="title">Album {{ album.id }}</div>
         <div class="desc">{{ album.title }}</div>
@@ -20,6 +20,11 @@
           </button>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 text-center">
+      <pagination-controls (pageChange)="page = $event"></pagination-controls>
     </div>
   </div>
 </div>

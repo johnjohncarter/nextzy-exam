@@ -15,6 +15,9 @@ export class AlbumComponent implements OnInit {
   perPage: number;
   currentPage: number;
 
+  p: number;
+  collection: any;
+
   constructor(
     private router: Router,
     private album: PhotosService,
@@ -23,8 +26,8 @@ export class AlbumComponent implements OnInit {
     this.title.setTitle('album');
 
     this.currentPage = 0;
-    this.page = 0;
-    this.perPage = 15;
+    this.page = 1;
+    this.perPage = 16;
   }
 
   ngOnInit() {

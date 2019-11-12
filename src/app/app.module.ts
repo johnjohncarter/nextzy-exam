@@ -11,6 +11,7 @@ import { AlbumComponent } from './components/album/album.component';
 import { AlbumDetailComponent } from './components/album-detail/album-detail.component';
 import { Configuration } from '../config/app.constant';
 import { PhotosService } from './services/photos.service';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PhotosService } from './services/photos.service';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRouting
+    AppRouting,
+    NgxPaginationModule,
   ],
   providers: [
     Configuration,
