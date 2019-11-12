@@ -3,7 +3,7 @@
 </div>
 <div style="padding: 18px; background-color: #ffffff">
   <div class="row">
-    <div *ngIf="!albums">
+    <div *ngIf="!albums && !isLoading">
       <h3>Not found album !!</h3>
     </div>
     <div *ngFor="let album of albums | paginate: { itemsPerPage: perPage, currentPage: page }"
@@ -12,8 +12,8 @@
         <a target="_blank" href="{{ album.url }}">
           <img src="{{ album.url }}" alt="image-{{ album.id }}">
         </a>
-        <div class="title">Album {{ album.id }}</div>
-        <div class="desc">{{ album.title }}</div>
+        <div class="title">Photo ID {{ album.id }}</div>
+        <div class="desc">Album {{ album.albumId }}  <br>{{ album.title }}</div>
         <div class="desc">
           <button (click)="onMoreDetail(album.albumId)"
                   class="btn btn-primary rounded-0">More Detail

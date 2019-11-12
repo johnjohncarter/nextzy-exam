@@ -14,6 +14,7 @@ export class AlbumComponent implements OnInit {
   page: number;
   perPage: number;
   currentPage: number;
+  isLoading: boolean;
 
   constructor(
     private router: Router,
@@ -25,6 +26,7 @@ export class AlbumComponent implements OnInit {
     this.currentPage = 0;
     this.page = 1;
     this.perPage = 16;
+    this.isLoading = true;
   }
 
   ngOnInit() {
@@ -35,9 +37,11 @@ export class AlbumComponent implements OnInit {
     this.album.getAlbum().subscribe(
       response => {
           this.albums = response;
+          this.isLoading = false;
       },
-      error => {
-          console.log(error);
+        error => {
+        this.isLoading = false;
+        console.log(error);
       }
     );
   }

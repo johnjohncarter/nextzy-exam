@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {PhotosService} from "../../services/photos.service";
-import {Title} from "@angular/platform-browser";
+import { ActivatedRoute, Router } from '@angular/router';
+import { PhotosService } from '../../services/photos.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-album-detail',
@@ -9,12 +9,12 @@ import {Title} from "@angular/platform-browser";
   styleUrls: ['./album-detail.component.css']
 })
 export class AlbumDetailComponent implements OnInit {
+  albumId: any;
   albums: any;
-
+  isLoading: any;
   page: number;
   perPage: number;
   currentPage: number;
-  albumId: any;
 
   constructor(
     private router: Router,
@@ -25,8 +25,9 @@ export class AlbumDetailComponent implements OnInit {
     this.title.setTitle('album-detail');
 
     this.currentPage = 0;
-    this.page = 0;
-    this.perPage = 15;
+    this.page = 1;
+    this.perPage = 16;
+    this.isLoading = true;
 
     this.route.params.subscribe( params => {
       this.albumId = params.id;
@@ -41,8 +42,10 @@ export class AlbumDetailComponent implements OnInit {
     this.album.getAlbumDetail(this.albumId).subscribe(
       response => {
         this.albums = response;
+        this.isLoading = false;
       },
-      error => {
+        error => {
+        this.isLoading = false;
         console.log(error);
       }
     );
