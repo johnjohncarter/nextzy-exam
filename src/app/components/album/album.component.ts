@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { PhotosService } from '../../services/photos.service';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import { PhotosHelper } from '../../halper/photos';
 
 @Component({
   selector: 'app-album',
@@ -18,8 +19,10 @@ export class AlbumComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private album: PhotosService,
     private title: Title,
+    private photosHelper: PhotosHelper,
   ) {
     this.title.setTitle('album');
 
@@ -27,6 +30,10 @@ export class AlbumComponent implements OnInit {
     this.page = 1;
     this.perPage = 16;
     this.isLoading = true;
+
+    this.route.params.subscribe( params => {
+      this.page = params.id;
+    });
   }
 
   ngOnInit() {
@@ -36,10 +43,11 @@ export class AlbumComponent implements OnInit {
   getAlbum() {
     this.album.getAlbum().subscribe(
       response => {
-          this.albums = response;
-          this.isLoading = false;
+        // this.albums = response;
+        this.albums = this.photosHelper.setAlbum(response);
+        this.isLoading = false;
       },
-        error => {
+      error => {
         this.isLoading = false;
         console.log(error);
       }
@@ -48,6 +56,10 @@ export class AlbumComponent implements OnInit {
 
   onMoreDetail(id) {
     this.router.navigate(['/album-detail', id]);
+  }
+
+  onPageChanged(page) {
+    this.router.navigate(['/album', page]);
   }
 
 }

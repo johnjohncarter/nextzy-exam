@@ -9,11 +9,13 @@
     <div *ngFor="let album of albums | paginate: { itemsPerPage: perPage, currentPage: page }"
          class="col-lg-3 col-md-4 col-sm-6">
       <div class="gallery">
-        <a target="_blank" href="{{ album.url }}">
+        <a target="_blank" (click)="onMoreDetail(album.albumId)">
           <img src="{{ album.url }}" alt="image-{{ album.id }}">
         </a>
-        <div class="title">Photo ID {{ album.id }}</div>
-        <div class="desc">Album {{ album.albumId }}  <br>{{ album.title }}</div>
+<!--        <div class="title">Photo ID {{ album.id }}</div>-->
+<!--        <div class="desc">Album {{ album.albumId }}  <br>{{ album.title }}</div>-->
+        <div class="title">Album {{ album.albumId }}</div>
+        <div class="desc">{{ album.title }}</div>
         <div class="desc">
           <button (click)="onMoreDetail(album.albumId)"
                   class="btn btn-primary rounded-0">More Detail
@@ -24,7 +26,7 @@
   </div>
   <div class="row">
     <div class="col-sm-12 text-center">
-      <pagination-controls (pageChange)="page = $event"></pagination-controls>
+      <pagination-controls (pageChange)="onPageChanged(page = $event)"></pagination-controls>
     </div>
   </div>
 </div>

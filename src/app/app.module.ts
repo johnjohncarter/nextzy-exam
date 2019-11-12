@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ComponentsComponent } from './components/components.component';
-import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AppRouting } from './app.routing';
 import { AlbumComponent } from './components/album/album.component';
@@ -17,7 +16,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
   declarations: [
     AppComponent,
     ComponentsComponent,
-    HomeComponent,
     NotFoundComponent,
     AlbumComponent,
     AlbumDetailComponent,
