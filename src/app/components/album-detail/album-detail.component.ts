@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {PhotosService} from "../../services/photos.service";
 import {Title} from "@angular/platform-browser";
 
@@ -11,12 +11,26 @@ import {Title} from "@angular/platform-browser";
 export class AlbumDetailComponent implements OnInit {
   albums: any;
 
+  page: number;
+  perPage: number;
+  currentPage: number;
+  albumId: any;
+
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private album: PhotosService,
     private title: Title,
   ) {
     this.title.setTitle('album-detail');
+
+    this.currentPage = 0;
+    this.page = 0;
+    this.perPage = 15;
+
+    this.route.params.subscribe( params => {
+      this.albumId = params.id;
+    });
   }
 
   ngOnInit() {
@@ -24,7 +38,7 @@ export class AlbumDetailComponent implements OnInit {
   }
 
   getAlbumDetail() {
-    this.album.getAlbumDetail(1).subscribe(
+    this.album.getAlbumDetail(this.albumId).subscribe(
       response => {
         this.albums = response;
       },

@@ -3,7 +3,11 @@
 </div>
 <div style="padding: 18px; background-color: #ffffff">
   <div class="row">
-    <div *ngFor="let album of albums | slice:page: perPage" class="col-lg-3 col-md-4 col-sm-6">
+    <div *ngIf="!albums">
+      <h3>Not found album !!</h3>
+    </div>
+    <div *ngFor="let album of albums | slice:page: perPage"
+         class="col-lg-3 col-md-4 col-sm-6">
       <div class="gallery">
         <a target="_blank" href="{{ album.url }}">
           <img src="{{ album.url }}" alt="image-{{ album.id }}" style="height: 80%">
